@@ -1,0 +1,18 @@
+@import '~antd/dist/antd.css';
+
+.app-title{
+  background-color:#cfcfcf;
+  font-size: 40px;
+  padding: 150px 100px 100px;
+}
+
+.comment{
+  float: left;
+  width:49%;
+}
+
+
+.history{
+  float: left;
+  width:49%;
+}
