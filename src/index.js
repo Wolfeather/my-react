@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter,HashRouter} from 'react-router-dom'
 import 'style/index.css';
 import App from 'components/app';
 import * as serviceWorker from './serviceWorker';
+import { Hash } from 'crypto';
 ReactDOM.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <App />
-  </React.StrictMode>,
+  </BrowserRouter>,
+  // <HashRouter>
+  //   <App />
+  // </HashRouter>,
   document.getElementById('root')
 );
 
