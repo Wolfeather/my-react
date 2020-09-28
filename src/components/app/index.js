@@ -1,67 +1,33 @@
 import React, { Component } from "react";
-import {NavLink,Switch,Link,Route,Redirect} from 'react-router-dom';
-
-import History from "components/history";
-import Comment from "components/comment";
-import About from 'components/about'
-import Home from 'components/home'
+import {Button,Toast} from "antd-mobile";
 import "./app.css";
-
+import {INCREMENT,DECREMENT} from 'redux/action-types'
+import * as actions from "redux/actions";
 export default class App extends Component {
-	state = {
-		comments:[
-			{
-				user:'xxx',
-				content:'少林功夫好诶，真滴好'
-			},
-			{
-				user:'yyy',
-				content:'我是金刚腿，他是铁头功'
-			}
-		]
-	}
 
-	addComment = (comment)=>{
-		let {comments} = this.state
-		comments.unshift(comment)
-		this.setState({
-			comments
-		})
+	add = ()=>{
+		let step = this.select.value * 1
+		this.props.store.dispatch(actions.increment)
 	}
-
-	deleteComment = (index)=>{
-		let {comments} = this.state
-		comments.splice(index,1)
-		this.setState({
-			comments
-		})
+	reduce = ()=>{
+		let step = this.select.value * 1
+		this.props.store.dispatch({type:DECREMENT,data:step})
 	}
-
 	render() {
-		const {comments} = this.state
+		const count = this.props.store.getState()
 		return (
 			<div>
-				<div className="app-title">请发表对React的评论</div>
-				<div className="nf">
-					<Comment addComment={this.addComment}></Comment>
-					<History comments={comments} deleteComment={this.deleteComment} ></History>
-				</div>
-				<div className="fl">
-					<ul>
-						<li>
-							<NavLink to="/about">about</NavLink>
-						</li>
-						<li>
-							<NavLink to="/home">home</NavLink>
-						</li>
-					</ul>
-				</div>
-				<div className="fl">
-					<Switch>
-						<Route path="/about" component={About}></Route>
-						<Route path="/home" component={Home}></Route>
-						<Redirect to="/home"></Redirect>
-					</Switch>
+				<p> click {count} times</p>
+				<div>
+					<select ref={select=>this.select=select}>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select> &nbsp;
+					<button onClick={this.add}>+</button>&nbsp;
+					<button onClick={this.reduce}>-</button>&nbsp;
+					<button onClick={this.incrementIfOdd}>increment if odd</button>&nbsp;
+					<button onClick={this.incrementAsync}>increment async</button>&nbsp;
 				</div>
 			</div>
 		);

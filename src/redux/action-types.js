@@ -1,0 +1,4 @@
+const INCREMENT = Symbol('INCREMENT')
+const DECREMENT = Symbol('DECREMENT')
+
+export  {INCREMENT,DECREMENT}
