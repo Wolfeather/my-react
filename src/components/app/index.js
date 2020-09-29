@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import {Button,Toast} from "antd-mobile";
 import "./app.css";
-import {INCREMENT,DECREMENT} from 'redux/action-types'
 import * as actions from "redux/actions";
 export default class App extends Component {
 
 	add = ()=>{
 		let step = this.select.value * 1
-		this.props.store.dispatch(actions.increment)
+		this.props.store.dispatch(actions.increment(step))
 	}
 	reduce = ()=>{
 		let step = this.select.value * 1
-		this.props.store.dispatch({type:DECREMENT,data:step})
+		this.props.store.dispatch(actions.decrement(step))
 	}
 	render() {
 		const count = this.props.store.getState()

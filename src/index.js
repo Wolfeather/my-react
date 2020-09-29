@@ -2,13 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter,HashRouter} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
-import {createStore} from 'redux'
 import 'antd-mobile/dist/antd-mobile.css'; 
 
 import 'style/index.css';
 import App from 'components/app';
-import {counter} from './redux/reducers'
-const store = createStore(counter)
+import store from 'redux/store'
 function render(){
   ReactDOM.render(
     <BrowserRouter>
